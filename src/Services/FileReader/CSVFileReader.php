@@ -11,6 +11,10 @@ class CSVFileReader implements FileReaderInterface
 
     private $file;
 
+    /**
+     * Array with headers of csv file
+     * @var Array
+     */
     private $header;
 
     public function __destruct()

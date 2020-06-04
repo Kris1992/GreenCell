@@ -8,6 +8,7 @@
     <body>
         {% include 'flash_messages.html.twig' %} 
         {% block body %}{% endblock %}
+        <a href="{{ path('app_homepage') }}">Try again</a>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

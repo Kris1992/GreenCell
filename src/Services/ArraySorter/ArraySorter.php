@@ -10,6 +10,11 @@ class ArraySorter implements ArraySorterInterface
     {
 
         $newArray = array_column($data, $key);
+        if (!$newArray) {
+            throw new \Exception("Given array key to sort doesn't exist.");
+            
+        }
+
         switch ($mode) {
             case 'DESC':
                 array_multisort($newArray, SORT_DESC, $data);
@@ -18,7 +23,6 @@ class ArraySorter implements ArraySorterInterface
                 array_multisort($newArray, SORT_ASC, $data);
                 break;
         }
-        
 
         return $data;
     }

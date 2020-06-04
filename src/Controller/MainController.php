@@ -36,10 +36,15 @@ class MainController extends AbstractController
             return $this->redirectToRoute('app_error');
         }
 
-        $emailSorted = $arraySorter->sort($data, 'email');
-        $noteSorted = $arraySorter->sort($data, 'note', 'DESC');
-        $createdSorted = $arraySorter->sort($data, 'created');
-
+        try {
+            $emailSorted = $arraySorter->sort($data, 'email');
+            $noteSorted = $arraySorter->sort($data, 'note', 'DESC');
+            $createdSorted = $arraySorter->sort($data, 'created');
+        } catch (\Exception $e) {
+            $this->addFlash('warning', $e->getMessage());
+            return $this->redirectToRoute('app_error');
+        }
+        
         $highestNoteWorker = $noteSorted[0];
         $oldestCreated = $createdSorted[0];
 
