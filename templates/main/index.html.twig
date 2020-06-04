@@ -8,7 +8,10 @@
     {% if validDates %}
         <span>Wszystkie podane w pliku daty utworzenia sa poprawne.</span>
     {% else %}
-        <span>Uwaga jedna lub więcej wczytanych dat utworzenia jest niepoprawnych.</span>
+        <span>Uwaga jedna lub więcej wczytanych dat utworzenia jest niepoprawnych. Niepoprawne daty to:</span>
+        {% for date in invalidDates %}
+            {{ date }} <br />
+        {% endfor %}
     {% endif %}
 {% endif %}
 

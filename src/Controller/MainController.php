@@ -50,11 +50,13 @@ class MainController extends AbstractController
         $oldestCreated = $createdSorted[0];
 
         $isValidDate = true;
+        $invalidDates = null;
 
         /* One of dates is wrong so I implement Date validator */
         foreach ($data as $worker) {
             if (!$dateValidator->validate($worker['created'])) {
                 $isValidDate = false;
+                $invalidDates[] = $worker['created'];
             }
         }
 
@@ -63,6 +65,7 @@ class MainController extends AbstractController
             'highestNoteWorker' => $highestNoteWorker,
             'oldestCreated' => $oldestCreated,
             'validDates' => $isValidDate,
+            'invalidDates' => $invalidDates
         ]);
     }
 
