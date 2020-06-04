@@ -12,8 +12,8 @@ interface ArraySorterInterface
     /**
      * [sort Sort data in array by given key]
      * @param  Array  $data Array with data to sort
-     * @param  string $key  Key
-     * @param  string $mode Mode of sort ASC or DESC. Default 'ASC' [optional]
+     * @param  string $key  Key of array which values will be sorted
+     * @param  string $mode Mode of sort: ASC or DESC. Default 'ASC' [optional]
      * @throws Exception    Throw Exception when given key doesn't exist in array
      * @return Array        Return sorted array
      */

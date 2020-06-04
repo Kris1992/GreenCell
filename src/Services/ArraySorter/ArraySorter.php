@@ -11,8 +11,7 @@ class ArraySorter implements ArraySorterInterface
 
         $newArray = array_column($data, $key);
         if (!$newArray) {
-            throw new \Exception("Given array key to sort doesn't exist.");
-            
+            throw new \Exception("Given array key to sort doesn't exist.");   
         }
 
         switch ($mode) {
@@ -25,6 +24,7 @@ class ArraySorter implements ArraySorterInterface
         }
 
         return $data;
+        
     }
 
 }

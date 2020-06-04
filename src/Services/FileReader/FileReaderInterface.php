@@ -10,7 +10,7 @@ interface FileReaderInterface
 {   
     /**
      * read Open file to read
-     * @param  string $filePath String with path to file
+     * @param  string $filePath String with absolute path to file
      * @throws Exception Throw Exception when file is not readable
      * @return void
      */
