@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+
+<h1> Informacje o pracownikach </h1>
+<p> Pracownicy posortowani alfabetycznie według adresu email: </p>
+{% if emailSorted is defined %}
+    <table>
+        <thead>
+            <tr>
+                <th>E-mail</th>
+                <th>Ocena</th>
+                <th>Data utworzenia</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for worker in emailSorted %}
+                <tr>
+                    <td>{{ worker.email }}</td>
+                    <td>{{ worker.note }}</td>
+                    <td>{{ worker.created }}</td>       
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+<br>
+<p> Pracownik z najwyższą oceną: </p>
+<br>
+{% if highestNoteWorker is defined %}
+    {{ highestNoteWorker.email }}
+{% endif %}
+<br>
+<p> Pracownik z najstarszą datą dodania: </p>
+<br>
+{% if oldestCreated is defined %}
+    {{ oldestCreated.email }}
+{% endif %}
+{% endblock %}
