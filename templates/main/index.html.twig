@@ -4,6 +4,14 @@
 
 {% block body %}
 
+{% if validDates is defined %}
+    {% if validDates %}
+        <span>Wszystkie podane w pliku daty utworzenia sa poprawne.</span>
+    {% else %}
+        <span>Uwaga jedna lub więcej wczytanych dat utworzenia jest niepoprawnych.</span>
+    {% endif %}
+{% endif %}
+
 <h1> Informacje o pracownikach </h1>
 <p> Pracownicy posortowani alfabetycznie według adresu email: </p>
 {% if emailSorted is defined %}

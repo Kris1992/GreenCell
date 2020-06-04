@@ -8,13 +8,14 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Services\CSVFileValidator\CSVFileValidatorInterface;
 use App\Services\FileReader\FileReaderInterface;
 use App\Services\ArraySorter\ArraySorterInterface;
+use App\Services\DateValidator\DateValidatorInterface;
 
 class MainController extends AbstractController
 {
     /**
      * @Route("/", name="app_homepage", methods={"GET"})
      */
-    public function index(CSVFileValidatorInterface $CSVFileValidator, FileReaderInterface $fileReader, ArraySorterInterface $arraySorter, string $csvPath)
+    public function index(CSVFileValidatorInterface $CSVFileValidator, FileReaderInterface $fileReader, ArraySorterInterface $arraySorter, DateValidatorInterface $dateValidator, string $csvPath)
     {
         try {
             $isValid = $CSVFileValidator->validate($csvPath);
@@ -48,10 +49,20 @@ class MainController extends AbstractController
         $highestNoteWorker = $noteSorted[0];
         $oldestCreated = $createdSorted[0];
 
+        $isValidDate = true;
+
+        /* One of dates is wrong so I implement Date validator */
+        foreach ($data as $worker) {
+            if (!$dateValidator->validate($worker['created'])) {
+                $isValidDate = false;
+            }
+        }
+
         return $this->render('main/index.html.twig', [
             'emailSorted' => $emailSorted,
             'highestNoteWorker' => $highestNoteWorker,
-            'oldestCreated' => $oldestCreated
+            'oldestCreated' => $oldestCreated,
+            'validDates' => $isValidDate,
         ]);
     }
 
